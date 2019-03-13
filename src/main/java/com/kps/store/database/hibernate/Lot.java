@@ -18,15 +18,14 @@ import org.hibernate.annotations.AccessType;
 
 @Entity
 @Table
-@AccessType("property")
 public class Lot {
 	private Long lotId;
+	private String invoiceNumber;
 	private Vendor lotVendor;
 	private List<LotItem> lotItems;
 	private double extras;
 
 	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "lot_id")
 	@SequenceGenerator(name = "lot_id", sequenceName = "lot_id")
 	@Column(name = "lot_id", updatable = false, nullable = false)
@@ -38,7 +37,16 @@ public class Lot {
 		this.lotId = lotId;
 	}
 
-	@OneToOne(fetch=FetchType.EAGER)
+	@Column(name = "invoice_number")
+	public String getInvoiceNumber() {
+		return this.invoiceNumber;
+	}
+
+	public void setInvoiceNumber(String invoiceNumber) {
+		this.invoiceNumber = invoiceNumber;
+	}
+
+	@OneToOne(fetch = FetchType.EAGER)
 	public Vendor getLotVendor() {
 		return lotVendor;
 	}
@@ -47,7 +55,7 @@ public class Lot {
 		this.lotVendor = lotVendor;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	public List<LotItem> getLotItems() {
 		return lotItems;
 	}

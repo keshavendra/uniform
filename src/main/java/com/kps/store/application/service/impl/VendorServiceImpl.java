@@ -27,19 +27,19 @@ public class VendorServiceImpl implements VendorService {
 		try (Session session = sessionFactory.openSession()) {
 			Query<Vendor> query = session.createQuery("from Vendor", Vendor.class);
 			vendorList = query.list();
+			session.close();
 		}
-		return ModelUtil.convertToModel(vendorList);
+		return ModelUtil.convertVendorListToVendorModelList(vendorList);
 	}
 
 	@Override
 	@Transactional
 	public String save(VendorModel vendorModel) {
-		// TODO Auto-generated method stub
 		String message;
 		try(Session session = sessionFactory.openSession()){
 			
 			Transaction tx = session.beginTransaction();
-			Vendor vendor = ModelUtil.convertToPojo(vendorModel);
+			Vendor vendor = ModelUtil.convertToVendorPojo(vendorModel);
 			session.save(vendor);
 			tx.commit();
 			message="Vendor saved with id : "+vendor.getVendorId();

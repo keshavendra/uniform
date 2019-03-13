@@ -12,13 +12,11 @@ import org.hibernate.annotations.AccessType;
 
 @Entity
 @Table
-@AccessType("property")
 public class School {
 	private Long schoolId;
 	private String schoolName;
 
 	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "school_id")
 	@SequenceGenerator(name = "school_id", sequenceName = "school_id")
 	@Column(name = "school_id", updatable = false, nullable = false)
