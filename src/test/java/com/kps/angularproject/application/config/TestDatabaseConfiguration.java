@@ -1,10 +1,9 @@
-package com.kps.store.application.config;
+package com.kps.angularproject.application.config;
 
 import java.util.Properties;
 
 import javax.sql.DataSource;
 
-import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -18,22 +17,18 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@PropertySource(value = { "classpath:application.properties" })
-public class DatabaseConfiguration {
-
-	private static final Logger LOG = Logger.getLogger(DatabaseConfiguration.class);
+@PropertySource(value = { "classpath:test-application.properties" })
+public class TestDatabaseConfiguration {
 
 	@Autowired
 	private Environment environment;
 
 	@Bean
 	public LocalSessionFactoryBean sessionFactory() {
-		LOG.debug("Session Factory is loading...!!!");
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource());
-		sessionFactory.setPackagesToScan("com.kps.store.database.hibernate");
+		sessionFactory.setPackagesToScan(new String[] { "com.kps.store.database.hibernate" });
 		sessionFactory.setHibernateProperties(hibernateProperties());
-		LOG.debug("Session Factory is loaded...!!!");
 		return sessionFactory;
 	}
 
@@ -52,7 +47,7 @@ public class DatabaseConfiguration {
 		properties.put("hibernate.dialect", environment.getRequiredProperty("hibernate.dialect"));
 		properties.put("hibernate.show_sql", environment.getRequiredProperty("hibernate.show_sql"));
 		properties.put("hibernate.format_sql", environment.getRequiredProperty("hibernate.format_sql"));
-//		properties.put("hibernate.hbm2ddl.auto", environment.getRequiredProperty("hibernate.hbm2ddl.auto"));
+		properties.put("hibernate.hbm2ddl.auto", environment.getRequiredProperty("hibernate.hbm2ddl.auto"));
 		return properties;
 	}
 
