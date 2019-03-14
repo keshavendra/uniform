@@ -10,3 +10,9 @@
 .settings/org.eclipse.wst.jsdt.ui.superType.container
 .settings/org.eclipse.wst.jsdt.ui.superType.name
 .settings/org.eclipse.wst.validation.prefs
+target/classes/application.properties
+target/classes/log4j.properties
+target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
+target/m2e-wtp/web-resources/META-INF/maven/com.kps.store/uniform/pom.properties
+target/m2e-wtp/web-resources/META-INF/maven/com.kps.store/uniform/pom.xml
+target/test-classes/test-application.properties

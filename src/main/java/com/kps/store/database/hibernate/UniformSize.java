@@ -14,7 +14,7 @@ import org.hibernate.annotations.AccessType;
 @Entity
 @AccessType("property")
 public class UniformSize {
-	private long sizeId;
+	private Long sizeId;
 	private GENDER gender;
 	private Integer uniformNumber;
 
@@ -23,11 +23,11 @@ public class UniformSize {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "size_id")
 	@SequenceGenerator(name = "size_id", sequenceName = "size_id")
 	@Column(name = "size_id", updatable = false, nullable = false)
-	public long getSizeId() {
+	public Long getSizeId() {
 		return this.sizeId;
 	}
 
-	public void setSizeId(long sizeId) {
+	public void setSizeId(Long sizeId) {
 		this.sizeId = sizeId;
 	}
 

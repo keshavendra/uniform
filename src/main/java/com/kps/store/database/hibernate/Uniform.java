@@ -27,12 +27,12 @@ public class Uniform {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "uniform_id")
 	@SequenceGenerator(name = "uniform_id", sequenceName = "uniform_id")
 	@Column(name = "uniform_id", updatable = false, nullable = false)
-	public Long getId() {
+	public Long getUniformId() {
 		return this.uniformId;
 	}
 
-	public void setId(long uniform_id) {
-		this.uniformId = uniform_id;
+	public void setUniformId(Long uniformId) {
+		this.uniformId = uniformId;
 	}
 
 	@OneToOne(fetch=FetchType.EAGER)
