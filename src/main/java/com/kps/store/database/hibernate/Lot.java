@@ -44,7 +44,7 @@ public class Lot {
 		this.invoiceNumber = invoiceNumber;
 	}
 
-	@OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	public Vendor getLotVendor() {
 		return lotVendor;
 	}
@@ -62,6 +62,7 @@ public class Lot {
 		this.lotItems = lotItems;
 	}
 
+	@Column(name = "lot_extra")
 	public double getExtras() {
 		return extras;
 	}

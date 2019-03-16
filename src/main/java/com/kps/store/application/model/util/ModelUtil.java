@@ -3,11 +3,15 @@ package com.kps.store.application.model.util;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.kps.store.application.model.LotItemModel;
+import com.kps.store.application.model.LotModel;
 import com.kps.store.application.model.SchoolModel;
 import com.kps.store.application.model.UniformModel;
 import com.kps.store.application.model.UniformSizeModel;
 import com.kps.store.application.model.VendorModel;
 import com.kps.store.database.hibernate.GENDER;
+import com.kps.store.database.hibernate.Lot;
+import com.kps.store.database.hibernate.LotItem;
 import com.kps.store.database.hibernate.School;
 import com.kps.store.database.hibernate.Uniform;
 import com.kps.store.database.hibernate.UniformSize;
@@ -110,4 +114,72 @@ public class ModelUtil {
 		uniformSizeModel.setUniformNumber(uniformSize.getUniformNumber());
 		return uniformSizeModel;
 	}
+
+	public static Lot convertToLotPojo(LotModel lotModel) {
+		Lot lot = new Lot();
+		lot.setLotId(lotModel.getLotId());
+		lot.setInvoiceNumber(lotModel.getInvoiceNumber());
+		lot.setExtras(lotModel.getExtras());
+		lot.setLotItems(convertLotItemModelListToLotItemList(lotModel.getLotItems()));
+		lot.setLotVendor(convertToVendorPojo(lotModel.getLotVendor()));
+		return lot;
+	}
+
+	public static List<LotItem> convertLotItemModelListToLotItemList(List<LotItemModel> lotItems) {
+		List<LotItem> lotItemList = new ArrayList<LotItem>();
+		for (LotItemModel lotItemModel : lotItems) {
+			lotItemList.add(convertLotItemModelToLotItem(lotItemModel));
+		}
+		return lotItemList;
+	}
+
+	public static LotItem convertLotItemModelToLotItem(LotItemModel lotItemModel) {
+		LotItem lotItem = new LotItem();
+		lotItem.setCostPrice(lotItemModel.getCostPrice());
+		lotItem.setGst(lotItemModel.getGst());
+		lotItem.setLotItemId(lotItemModel.getLotItemId());
+		lotItem.setQuantity(lotItemModel.getQuantity());
+		lotItem.setUniformName(convertToUniformPojo(lotItemModel.getUniformName()));
+		return lotItem;
+	}
+
+	public static List<LotModel> convertLotListToLotModelList(List<Lot> lotList) {
+		List<LotModel> lotModelList = new ArrayList<LotModel>();
+		for (Lot lot : lotList) {
+			lotModelList.add(convertLotToLotModel(lot));
+		}
+
+		return lotModelList;
+	}
+
+	public static LotModel convertLotToLotModel(Lot lot) {
+		LotModel lotModel = new LotModel();
+
+		lotModel.setExtras(lot.getExtras());
+		lotModel.setInvoiceNumber(lot.getInvoiceNumber());
+		lotModel.setLotId(lot.getLotId());
+		lotModel.setLotItems(convertLotItemListToLotItemModelList(lot.getLotItems()));
+		lotModel.setLotVendor(convertVendorToVendorModel(lot.getLotVendor()));
+
+		return lotModel;
+	}
+
+	public static List<LotItemModel> convertLotItemListToLotItemModelList(List<LotItem> lotItems) {
+		List<LotItemModel> lotItemModelList = new ArrayList<LotItemModel>();
+		for (LotItem lotItem : lotItems) {
+			lotItemModelList.add(convertLotItemToLotItemModel(lotItem));
+		}
+		return lotItemModelList;
+	}
+
+	private static LotItemModel convertLotItemToLotItemModel(LotItem lotItem) {
+		LotItemModel lotItemModel = new LotItemModel();
+		lotItemModel.setCostPrice(lotItem.getCostPrice());
+		lotItemModel.setGst(lotItem.getGst());
+		lotItemModel.setLotItemId(lotItem.getLotItemId());
+		lotItemModel.setQuantity(lotItem.getQuantity());
+		lotItemModel.setUniformName(convertUniformToUniformModel(lotItem.getUniformName()));
+		return lotItemModel;
+	}
+
 }

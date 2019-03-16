@@ -1,5 +1,6 @@
 package com.kps.store.database.hibernate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,9 +16,9 @@ import javax.persistence.Table;
 public class LotItem {
 	private Long lotItemId;
 	private Uniform uniformName;
-	private double costPrice;
-	private double gst;
-	private int quantity;
+	private Double costPrice;
+	private Double gst;
+	private Integer quantity;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "lot_item_id")
@@ -31,7 +32,7 @@ public class LotItem {
 		this.lotItemId = lotItemId;
 	}
 
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	public Uniform getUniformName() {
 		return uniformName;
 	}
@@ -41,29 +42,29 @@ public class LotItem {
 	}
 
 	@Column(name = "cost_price")
-	public double getCostPrice() {
+	public Double getCostPrice() {
 		return costPrice;
 	}
 
-	public void setCostPrice(double costPrice) {
+	public void setCostPrice(Double costPrice) {
 		this.costPrice = costPrice;
 	}
 
 	@Column(name = "gst_at_source")
-	public double getGst() {
+	public Double getGst() {
 		return gst;
 	}
 
-	public void setGst(double gst) {
+	public void setGst(Double gst) {
 		this.gst = gst;
 	}
 
 	@Column(name = "item_quantity")
-	public int getQuantity() {
+	public Integer getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(int quantity) {
+	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
 
