@@ -62,9 +62,10 @@ public class ModelUtil {
 
 	public static Uniform convertToUniformPojo(UniformModel uniformModel) {
 		Uniform uniform = new Uniform();
-		uniform.setSchool(uniformModel.getSchool());
-		uniform.setSize(uniformModel.getSize());
+		uniform.setSchool(convertToSchoolPojo(uniformModel.getSchool()));
+		uniform.setSize(convertToUniformSizePojo(uniformModel.getSize()));
 		uniform.setUniformDetail(uniformModel.getUniformDetail());
+		uniform.setUniformId(uniformModel.getUniformId());
 		return uniform;
 	}
 
@@ -79,8 +80,8 @@ public class ModelUtil {
 	public static UniformModel convertUniformToUniformModel(Uniform uniform) {
 		UniformModel model = new UniformModel();
 		model.setUniformId(uniform.getUniformId());
-		model.setSchool(uniform.getSchool());
-		model.setSize(uniform.getSize());
+		model.setSchool(convertSchoolToSchoolModel(uniform.getSchool()));
+		model.setSize(convertUniformSizeToUniformSizeModel(uniform.getSize()));
 		model.setUniformId(uniform.getUniformId());
 		return model;
 	}

@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.kps.store.application.model.UniformModel;
 import com.kps.store.application.model.util.ModelUtil;
 import com.kps.store.application.service.UniformService;
-import com.kps.store.database.hibernate.School;
 import com.kps.store.database.hibernate.Uniform;
 
 /**
@@ -36,7 +35,7 @@ public class UniformServiceImpl implements UniformService {
 		try (Session session = sessionFactory.openSession()) {
 			Transaction tx = session.beginTransaction();
 			Uniform uniform = ModelUtil.convertToUniformPojo(uniformModel);
-			session.save(uniform);
+			session.saveOrUpdate(uniform);
 			tx.commit();
 			message = "Uniform saved with id : " + uniform.getUniformId();
 		} catch (Exception e) {

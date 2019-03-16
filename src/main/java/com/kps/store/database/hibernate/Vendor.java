@@ -8,11 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.AccessType;
-
 @Entity
 @Table
-@AccessType("property")
 public class Vendor {
 	private Long vendorId;
 	private String vendorName;

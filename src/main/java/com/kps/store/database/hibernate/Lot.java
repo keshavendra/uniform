@@ -14,8 +14,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.AccessType;
-
 @Entity
 @Table
 public class Lot {
@@ -46,7 +44,7 @@ public class Lot {
 		this.invoiceNumber = invoiceNumber;
 	}
 
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
 	public Vendor getLotVendor() {
 		return lotVendor;
 	}

@@ -1,5 +1,6 @@
 package com.kps.store.database.hibernate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,12 +11,13 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.AccessType;
-
 @Entity
-@Table(name = "uniform"/*, uniqueConstraints = {
-		@UniqueConstraint(columnNames = { "school", "uniform_detail", "size" }, name = "pk_uniforms") }*/)
-@AccessType("property")
+@Table(name = "uniform"/*
+						 * , uniqueConstraints = {
+						 * 
+						 * @UniqueConstraint(columnNames = { "school", "uniform_detail", "size" }, name
+						 * = "pk_uniforms") }
+						 */)
 public class Uniform {
 	private Long uniformId;
 	private School school;
@@ -23,7 +25,6 @@ public class Uniform {
 	private UniformSize uniformSize;
 
 	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "uniform_id")
 	@SequenceGenerator(name = "uniform_id", sequenceName = "uniform_id")
 	@Column(name = "uniform_id", updatable = false, nullable = false)
@@ -35,7 +36,7 @@ public class Uniform {
 		this.uniformId = uniformId;
 	}
 
-	@OneToOne(fetch=FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	public School getSchool() {
 		return school;
 	}
@@ -53,7 +54,7 @@ public class Uniform {
 		this.uniformDetail = uniformDetail;
 	}
 
-	@OneToOne
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	public UniformSize getSize() {
 		return uniformSize;
 	}

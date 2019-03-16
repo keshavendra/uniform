@@ -3,18 +3,15 @@
  */
 package com.kps.store.application.model;
 
-import com.kps.store.database.hibernate.School;
-import com.kps.store.database.hibernate.UniformSize;
-
 /**
  * @author KPS
  *
  */
 public class UniformModel {
 	private Long uniformId;
-	private School school;
+	private SchoolModel school;
 	private String uniformDetail;
-	private UniformSize uniformSize;
+	private UniformSizeModel uniformSize;
 
 	public Long getUniformId() {
 		return this.uniformId;
@@ -24,11 +21,11 @@ public class UniformModel {
 		this.uniformId = uniformId;
 	}
 
-	public School getSchool() {
+	public SchoolModel getSchool() {
 		return school;
 	}
 
-	public void setSchool(School school) {
+	public void setSchool(SchoolModel school) {
 		this.school = school;
 	}
 
@@ -40,11 +37,11 @@ public class UniformModel {
 		this.uniformDetail = uniformDetail;
 	}
 
-	public UniformSize getSize() {
+	public UniformSizeModel getSize() {
 		return uniformSize;
 	}
 
-	public void setSize(UniformSize uniformSize) {
+	public void setSize(UniformSizeModel uniformSize) {
 		this.uniformSize = uniformSize;
 	}
 }

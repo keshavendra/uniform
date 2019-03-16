@@ -10,11 +10,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.AccessType;
-
 @Entity
 @Table
-@AccessType("property")
 public class LotItem {
 	private Long lotItemId;
 	private Uniform uniformName;
@@ -23,7 +20,6 @@ public class LotItem {
 	private int quantity;
 
 	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "lot_item_id")
 	@SequenceGenerator(name = "lot_item_id", sequenceName = "lot_item_id")
 	@Column(name = "lot_item_id", updatable = false, nullable = false)

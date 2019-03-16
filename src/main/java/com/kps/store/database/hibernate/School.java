@@ -8,8 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.AccessType;
-
 @Entity
 @Table
 public class School {

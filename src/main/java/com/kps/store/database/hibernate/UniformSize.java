@@ -8,18 +8,14 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.AccessType;
-
 @Table(name="USIZE")
 @Entity
-@AccessType("property")
 public class UniformSize {
 	private Long sizeId;
 	private GENDER gender;
 	private Integer uniformNumber;
 
 	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "size_id")
 	@SequenceGenerator(name = "size_id", sequenceName = "size_id")
 	@Column(name = "size_id", updatable = false, nullable = false)

@@ -3,8 +3,6 @@
  */
 package com.kps.store.application.model;
 
-import com.kps.store.database.hibernate.GENDER;
-
 /**
  * @author KPS
  *

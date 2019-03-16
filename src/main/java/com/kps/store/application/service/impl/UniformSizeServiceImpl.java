@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import com.kps.store.application.model.UniformSizeModel;
 import com.kps.store.application.model.util.ModelUtil;
 import com.kps.store.application.service.UniformSizeService;
-import com.kps.store.database.hibernate.Uniform;
 import com.kps.store.database.hibernate.UniformSize;
 
 @Service
