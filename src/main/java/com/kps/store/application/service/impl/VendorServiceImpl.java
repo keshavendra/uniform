@@ -36,17 +36,26 @@ public class VendorServiceImpl implements VendorService {
 	@Transactional
 	public String save(VendorModel vendorModel) {
 		String message;
-		try(Session session = sessionFactory.openSession()){
-			
+		try (Session session = sessionFactory.openSession()) {
 			Transaction tx = session.beginTransaction();
 			Vendor vendor = ModelUtil.convertToVendorPojo(vendorModel);
-			session.save(vendor);
+			session.saveOrUpdate(vendor);
 			tx.commit();
-			message="Vendor saved with id : "+vendor.getVendorId();
-		}catch(Exception e) {
-			message="Exception occured while saving object "+e.getMessage();
+			message = "Vendor saved with id : " + vendor.getVendorId();
+		} catch (Exception e) {
+			message = "Exception occured while saving object " + e.getMessage();
 		}
 		return message;
 	}
 
+	@Override
+	@Transactional(readOnly = true)
+	public VendorModel getVendorById(Long vendorId) {
+		Vendor vendor = null;
+		try (Session session = sessionFactory.openSession()) {
+			vendor = session.get(Vendor.class, vendorId);
+			session.close();
+		}
+		return ModelUtil.convertVendorToVendorModel(vendor);
+	}
 }

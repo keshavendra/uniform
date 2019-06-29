@@ -2,6 +2,7 @@ package com.kps.store.application.model.util;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.kps.store.application.model.LotItemModel;
 import com.kps.store.application.model.LotModel;
@@ -19,11 +20,7 @@ import com.kps.store.database.hibernate.Vendor;
 
 public class ModelUtil {
 	public static List<VendorModel> convertVendorListToVendorModelList(List<Vendor> vendorList) {
-		List<VendorModel> vendorModelList = new ArrayList<>();
-		for (Vendor vendor : vendorList) {
-			vendorModelList.add(convertVendorToVendorModel(vendor));
-		}
-		return vendorModelList;
+		return vendorList.stream().map(x->convertVendorToVendorModel(x)).collect(Collectors.toList());
 	}
 
 	public static List<SchoolModel> convertSchoolListToSchoolModelList(List<School> schoolList) {
@@ -52,6 +49,7 @@ public class ModelUtil {
 
 	public static Vendor convertToVendorPojo(VendorModel vendorModel) {
 		Vendor vendor = new Vendor();
+		vendor.setVendorId(vendorModel.getVendorId());
 		vendor.setVendorAddress(vendorModel.getVendorAddress());
 		vendor.setVendorName(vendorModel.getVendorName());
 		vendor.setVendorPhoneNumber(vendorModel.getVendorPhoneNumber());
@@ -61,11 +59,13 @@ public class ModelUtil {
 	public static School convertToSchoolPojo(SchoolModel schoolModel) {
 		School school = new School();
 		school.setSchoolName(schoolModel.getSchoolName());
+		school.setSchoolId(schoolModel.getSchoolId());
 		return school;
 	}
 
 	public static Uniform convertToUniformPojo(UniformModel uniformModel) {
 		Uniform uniform = new Uniform();
+		uniform.setUniformId(uniformModel.getUniformId());
 		uniform.setSchool(convertToSchoolPojo(uniformModel.getSchool()));
 		uniform.setSize(convertToUniformSizePojo(uniformModel.getSize()));
 		uniform.setUniformDetail(uniformModel.getUniformDetail());
@@ -92,6 +92,7 @@ public class ModelUtil {
 
 	public static UniformSize convertToUniformSizePojo(UniformSizeModel uniformSizeModel) {
 		UniformSize uniformSize = new UniformSize();
+		uniformSize.setSizeId(uniformSizeModel.getSizeId());
 		uniformSize.setGender(GENDER.valueOf(uniformSizeModel.getGender()));
 		uniformSize.setUniformNumber(uniformSizeModel.getUniformNumber());
 		return uniformSize;
@@ -144,32 +145,22 @@ public class ModelUtil {
 	}
 
 	public static List<LotModel> convertLotListToLotModelList(List<Lot> lotList) {
-		List<LotModel> lotModelList = new ArrayList<LotModel>();
-		for (Lot lot : lotList) {
-			lotModelList.add(convertLotToLotModel(lot));
-		}
-
-		return lotModelList;
+		return lotList.stream().map(x->convertLotToLotModel(x)).collect(Collectors.toList());
 	}
 
 	public static LotModel convertLotToLotModel(Lot lot) {
 		LotModel lotModel = new LotModel();
-
+		lotModel.setLotId(lot.getLotId());
 		lotModel.setExtras(lot.getExtras());
 		lotModel.setInvoiceNumber(lot.getInvoiceNumber());
 		lotModel.setLotId(lot.getLotId());
 		lotModel.setLotItems(convertLotItemListToLotItemModelList(lot.getLotItems()));
 		lotModel.setLotVendor(convertVendorToVendorModel(lot.getLotVendor()));
-
 		return lotModel;
 	}
 
 	public static List<LotItemModel> convertLotItemListToLotItemModelList(List<LotItem> lotItems) {
-		List<LotItemModel> lotItemModelList = new ArrayList<LotItemModel>();
-		for (LotItem lotItem : lotItems) {
-			lotItemModelList.add(convertLotItemToLotItemModel(lotItem));
-		}
-		return lotItemModelList;
+		return lotItems.stream().map(x->convertLotItemToLotItemModel(x)).collect(Collectors.toList());
 	}
 
 	private static LotItemModel convertLotItemToLotItemModel(LotItem lotItem) {

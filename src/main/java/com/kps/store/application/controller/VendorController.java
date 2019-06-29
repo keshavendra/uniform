@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kps.store.application.model.VendorModel;
@@ -30,5 +31,11 @@ public class VendorController {
 	@RequestMapping(value = "/save")
 	public String save(@RequestBody VendorModel vendorModel) {
 		return vendorService.save(vendorModel);
+	}
+	
+	@GetMapping
+	@RequestMapping(value="/getVendorById")
+	public VendorModel getVendorById(@RequestParam(name="vendorId")String vendorId) {
+		return vendorService.getVendorById(Long.parseLong(vendorId));
 	}
 }

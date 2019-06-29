@@ -58,6 +58,7 @@ public class VendorControllerTest {
 		MockitoAnnotations.initMocks(this);
 		when(mockVendorService.save(any(VendorModel.class))).thenReturn("Vendor saved with id : ");
 		when(mockVendorService.getAllVendor()).thenReturn(VENDOR_MODEL_LIST);
+		when(mockVendorService.getVendorById(1L)).thenReturn(VENDOR_MODEL_LIST.get(0));
 		mockMvc = MockMvcBuilders.standaloneSetup(this.vendorController).build();
 	}
 
@@ -90,5 +91,19 @@ public class VendorControllerTest {
 		}
 		Assert.assertNotNull(vendorModelList);
 		Assert.assertEquals(VENDOR_MODEL_LIST.size(), vendorModelList.size());
+	}
+	
+	@Test
+	public void testGetVendorById() {
+		VendorModel vendorModel = null;
+		try {
+			MvcResult mvcResult = mockMvc.perform(get("/vendor/getVendorById").param("vendorId", "1")).andReturn();
+			vendorModel = mapper.readValue(mvcResult.getResponse().getContentAsByteArray(),
+					new TypeReference<VendorModel>() {
+					});
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		Assert.assertNotNull(vendorModel);
 	}
 }

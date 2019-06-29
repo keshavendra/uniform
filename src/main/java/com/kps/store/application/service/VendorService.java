@@ -8,6 +8,8 @@ public interface VendorService {
 
 	public List<VendorModel> getAllVendor();
 
+	public VendorModel getVendorById(Long vendorId);
+	
 	public String save(VendorModel vendorModel);
 
 }

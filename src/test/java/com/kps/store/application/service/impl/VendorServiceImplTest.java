@@ -3,6 +3,8 @@
  */
 package com.kps.store.application.service.impl;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -69,6 +71,17 @@ public class VendorServiceImplTest {
 		Assert.assertFalse(CollectionUtils.isEmpty(vendorModelList));
 	}
 
+	@Test
+	public void testGetVendorById() {
+		VendorModel vendor = new VendorModel();
+		vendor.setVendorAddress("Rajajipuram");
+		vendor.setVendorName("Tiwari&Sons");
+		vendor.setVendorPhoneNumber("+91-8765432190");
+		vendorService.save(vendor);
+		VendorModel vendorModel = vendorService.getVendorById(1L);
+		Assert.assertNotNull(vendorModel);
+	}
+	
 	@Test
 	public void failSave() {
 		VendorModel vendor = new VendorModel();
