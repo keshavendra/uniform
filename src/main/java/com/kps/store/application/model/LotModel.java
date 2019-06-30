@@ -3,6 +3,7 @@
  */
 package com.kps.store.application.model;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -15,6 +16,8 @@ public class LotModel {
 	private VendorModel lotVendor;
 	private List<LotItemModel> lotItems;
 	private Double extras;
+	private Date lotCreatedDate;
+	private Date lotModifiedDate;
 
 	public Long getLotId() {
 		return lotId;
@@ -54,5 +57,23 @@ public class LotModel {
 
 	public void setExtras(Double extras) {
 		this.extras = extras;
+	}
+	
+	public Date getLotCreatedDate() {
+		if (this.lotCreatedDate != null)
+			return (Date) lotCreatedDate.clone();
+		return null;
+	}
+
+	public void setLotCreatedDate(Date lotCreatedDate) {
+		this.lotCreatedDate = (Date) lotCreatedDate.clone();
+	}
+
+	public Date getLotModifiedDate() {
+		return lotModifiedDate;
+	}
+
+	public void setLotModifiedDate(Date lotModifiedDate) {
+		this.lotModifiedDate = lotModifiedDate;
 	}
 }

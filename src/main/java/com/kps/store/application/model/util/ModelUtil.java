@@ -109,6 +109,8 @@ public class ModelUtil {
 		lot.setExtras(lotModel.getExtras());
 		lot.setLotItems(convertLotItemModelListToLotItemList(lotModel.getLotItems()));
 		lot.setLotVendor(convertToVendorPojo(lotModel.getLotVendor()));
+		lot.setLotCreatedDate(lotModel.getLotCreatedDate());
+		lot.setLotModifiedDate(lotModel.getLotModifiedDate());
 		return lot;
 	}
 
@@ -138,6 +140,8 @@ public class ModelUtil {
 		lotModel.setLotId(lot.getLotId());
 		lotModel.setLotItems(convertLotItemListToLotItemModelList(lot.getLotItems()));
 		lotModel.setLotVendor(convertVendorToVendorModel(lot.getLotVendor()));
+		lotModel.setLotCreatedDate(lot.getLotCreatedDate());
+		lotModel.setLotModifiedDate(lot.getLotModifiedDate());
 		return lotModel;
 	}
 

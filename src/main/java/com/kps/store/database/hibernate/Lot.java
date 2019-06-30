@@ -1,5 +1,6 @@
 package com.kps.store.database.hibernate;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -14,6 +15,10 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+/**
+ * @author KPS
+ *
+ */
 @Entity
 @Table
 public class Lot {
@@ -22,6 +27,8 @@ public class Lot {
 	private Vendor lotVendor;
 	private List<LotItem> lotItems;
 	private double extras;
+	private Date lotCreatedDate;
+	private Date lotModifiedDate;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "lot_id")
@@ -62,6 +69,26 @@ public class Lot {
 		this.lotItems = lotItems;
 	}
 
+	@Column(name = "lot_created_date")
+	public Date getLotCreatedDate() {
+		if (this.lotCreatedDate != null)
+			return (Date) lotCreatedDate.clone();
+		return null;
+	}
+
+	public void setLotCreatedDate(Date lotCreatedDate) {
+		this.lotCreatedDate = (Date) lotCreatedDate.clone();
+	}
+
+	@Column(name = "lot_modified_date")
+	public Date getLotModifiedDate() {
+		return lotModifiedDate;
+	}
+
+	public void setLotModifiedDate(Date lotModifiedDate) {
+		this.lotModifiedDate = lotModifiedDate;
+	}
+
 	@Column(name = "lot_extra")
 	public double getExtras() {
 		return extras;
@@ -70,4 +97,5 @@ public class Lot {
 	public void setExtras(double extras) {
 		this.extras = extras;
 	}
+
 }
