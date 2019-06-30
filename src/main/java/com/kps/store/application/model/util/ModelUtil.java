@@ -1,6 +1,5 @@
 package com.kps.store.application.model.util;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,15 +19,11 @@ import com.kps.store.database.hibernate.Vendor;
 
 public class ModelUtil {
 	public static List<VendorModel> convertVendorListToVendorModelList(List<Vendor> vendorList) {
-		return vendorList.stream().map(x->convertVendorToVendorModel(x)).collect(Collectors.toList());
+		return vendorList.stream().map(x -> convertVendorToVendorModel(x)).collect(Collectors.toList());
 	}
 
 	public static List<SchoolModel> convertSchoolListToSchoolModelList(List<School> schoolList) {
-		List<SchoolModel> schoolModelList = new ArrayList<>();
-		for (School school : schoolList) {
-			schoolModelList.add(convertSchoolToSchoolModel(school));
-		}
-		return schoolModelList;
+		return schoolList.stream().map(x -> convertSchoolToSchoolModel(x)).collect(Collectors.toList());
 	}
 
 	private static SchoolModel convertSchoolToSchoolModel(School school) {
@@ -74,11 +69,7 @@ public class ModelUtil {
 	}
 
 	public static List<UniformModel> convertUniformListToUniformModelList(List<Uniform> uniformList) {
-		List<UniformModel> uniformModelList = new ArrayList<>();
-		for (Uniform uniform : uniformList) {
-			uniformModelList.add(convertUniformToUniformModel(uniform));
-		}
-		return uniformModelList;
+		return uniformList.stream().map(x -> convertUniformToUniformModel(x)).collect(Collectors.toList());
 	}
 
 	public static UniformModel convertUniformToUniformModel(Uniform uniform) {
@@ -100,15 +91,10 @@ public class ModelUtil {
 
 	public static List<UniformSizeModel> convertUniformSizeListToUniformSizeModelList(
 			List<UniformSize> uniformSizeList) {
-		List<UniformSizeModel> uniformModelList = new ArrayList<>();
-		for (UniformSize uniformSize : uniformSizeList) {
-			uniformModelList.add(convertUniformSizeToUniformSizeModel(uniformSize));
-		}
-		return uniformModelList;
+		return uniformSizeList.stream().map(x -> convertUniformSizeToUniformSizeModel(x)).collect(Collectors.toList());
 	}
 
 	private static UniformSizeModel convertUniformSizeToUniformSizeModel(UniformSize uniformSize) {
-		// TODO Auto-generated method stub
 		UniformSizeModel uniformSizeModel = new UniformSizeModel();
 		uniformSizeModel.setGender(uniformSize.getGender().name().toUpperCase());
 		uniformSizeModel.setSizeId(uniformSize.getSizeId());
@@ -127,11 +113,7 @@ public class ModelUtil {
 	}
 
 	public static List<LotItem> convertLotItemModelListToLotItemList(List<LotItemModel> lotItems) {
-		List<LotItem> lotItemList = new ArrayList<LotItem>();
-		for (LotItemModel lotItemModel : lotItems) {
-			lotItemList.add(convertLotItemModelToLotItem(lotItemModel));
-		}
-		return lotItemList;
+		return lotItems.stream().map(x -> convertLotItemModelToLotItem(x)).collect(Collectors.toList());
 	}
 
 	public static LotItem convertLotItemModelToLotItem(LotItemModel lotItemModel) {
@@ -145,7 +127,7 @@ public class ModelUtil {
 	}
 
 	public static List<LotModel> convertLotListToLotModelList(List<Lot> lotList) {
-		return lotList.stream().map(x->convertLotToLotModel(x)).collect(Collectors.toList());
+		return lotList.stream().map(x -> convertLotToLotModel(x)).collect(Collectors.toList());
 	}
 
 	public static LotModel convertLotToLotModel(Lot lot) {
@@ -160,7 +142,7 @@ public class ModelUtil {
 	}
 
 	public static List<LotItemModel> convertLotItemListToLotItemModelList(List<LotItem> lotItems) {
-		return lotItems.stream().map(x->convertLotItemToLotItemModel(x)).collect(Collectors.toList());
+		return lotItems.stream().map(x -> convertLotItemToLotItemModel(x)).collect(Collectors.toList());
 	}
 
 	private static LotItemModel convertLotItemToLotItemModel(LotItem lotItem) {

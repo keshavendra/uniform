@@ -81,7 +81,7 @@ public class VendorServiceImplTest {
 		VendorModel vendorModel = vendorService.getVendorById(1L);
 		Assert.assertNotNull(vendorModel);
 	}
-	
+
 	@Test
 	public void failSave() {
 		VendorModel vendor = new VendorModel();

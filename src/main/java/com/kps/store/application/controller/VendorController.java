@@ -32,10 +32,10 @@ public class VendorController {
 	public String save(@RequestBody VendorModel vendorModel) {
 		return vendorService.save(vendorModel);
 	}
-	
+
 	@GetMapping
-	@RequestMapping(value="/getVendorById")
-	public VendorModel getVendorById(@RequestParam(name="vendorId")String vendorId) {
+	@RequestMapping(value = "/getVendorById")
+	public VendorModel getVendorById(@RequestParam(name = "vendorId") String vendorId) {
 		return vendorService.getVendorById(Long.parseLong(vendorId));
 	}
 }
