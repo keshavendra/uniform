@@ -93,4 +93,20 @@ public class VendorServiceImplTest {
 		Assert.assertTrue(message.contains("Exception occured while saving object"));
 	}
 
+	@Test
+	public void testGetVendorsByTerm() {
+		VendorModel vendor = new VendorModel();
+		vendor.setVendorAddress("Rajajipuram");
+		vendor.setVendorName("Tiwari&Sons");
+		vendor.setVendorPhoneNumber("+91-8765432190");
+		vendorService.save(vendor);
+		List<VendorModel> listVendorModel = vendorService.getVendorsByTerm("Kes");
+		Assert.assertNotNull(listVendorModel);
+		Assert.assertEquals(0, listVendorModel.size());
+		listVendorModel = vendorService.getVendorsByTerm("Tiwari");
+		Assert.assertNotNull(listVendorModel);
+		Assert.assertNotEquals(0, listVendorModel);
+		Assert.assertTrue(listVendorModel.size() > 0);
+	}
+
 }

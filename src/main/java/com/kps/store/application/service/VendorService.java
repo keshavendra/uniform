@@ -12,4 +12,6 @@ public interface VendorService {
 	
 	public String save(VendorModel vendorModel);
 
+	public List<VendorModel> getVendorsByTerm(String term);
+
 }

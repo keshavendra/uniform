@@ -1,5 +1,6 @@
 package com.kps.store.application.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -57,5 +58,17 @@ public class VendorServiceImpl implements VendorService {
 			session.close();
 		}
 		return ModelUtil.convertVendorToVendorModel(vendor);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<VendorModel> getVendorsByTerm(String term) {
+		List<VendorModel> vendorModelList = new ArrayList<>();
+		try (Session session = sessionFactory.openSession()) {
+			Query<Vendor> query = session.createQuery("from Vendor v where v.vendorName like :term", Vendor.class);
+			query.setParameter("term", "%" + term + "%");
+			vendorModelList = ModelUtil.convertVendorListToVendorModelList(query.list());
+		}
+		return vendorModelList;
 	}
 }

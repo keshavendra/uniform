@@ -58,7 +58,7 @@ public class LotModel {
 	public void setExtras(Double extras) {
 		this.extras = extras;
 	}
-	
+
 	public Date getLotCreatedDate() {
 		if (this.lotCreatedDate != null)
 			return (Date) lotCreatedDate.clone();
@@ -66,7 +66,8 @@ public class LotModel {
 	}
 
 	public void setLotCreatedDate(Date lotCreatedDate) {
-		this.lotCreatedDate = (Date) lotCreatedDate.clone();
+		if (lotCreatedDate != null)
+			this.lotCreatedDate = (Date) lotCreatedDate.clone();
 	}
 
 	public Date getLotModifiedDate() {
@@ -74,6 +75,7 @@ public class LotModel {
 	}
 
 	public void setLotModifiedDate(Date lotModifiedDate) {
-		this.lotModifiedDate = lotModifiedDate;
+		if (lotModifiedDate != null)
+			this.lotModifiedDate = lotModifiedDate;
 	}
 }

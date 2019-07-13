@@ -14,6 +14,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 /**
  * @author KPS
@@ -69,7 +74,8 @@ public class Lot {
 		this.lotItems = lotItems;
 	}
 
-	@Column(name = "lot_created_date")
+	@CreationTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
 	public Date getLotCreatedDate() {
 		if (this.lotCreatedDate != null)
 			return (Date) lotCreatedDate.clone();
@@ -77,16 +83,19 @@ public class Lot {
 	}
 
 	public void setLotCreatedDate(Date lotCreatedDate) {
-		this.lotCreatedDate = (Date) lotCreatedDate.clone();
+		if (lotCreatedDate != null)
+			this.lotCreatedDate = (Date) lotCreatedDate.clone();
 	}
 
-	@Column(name = "lot_modified_date")
+	@UpdateTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
 	public Date getLotModifiedDate() {
 		return lotModifiedDate;
 	}
 
 	public void setLotModifiedDate(Date lotModifiedDate) {
-		this.lotModifiedDate = lotModifiedDate;
+		if (lotModifiedDate != null)
+			this.lotModifiedDate = (Date) lotModifiedDate.clone();
 	}
 
 	@Column(name = "lot_extra")
