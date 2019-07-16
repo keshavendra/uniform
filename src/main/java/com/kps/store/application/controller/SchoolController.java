@@ -3,6 +3,7 @@ package com.kps.store.application.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,6 +14,7 @@ import com.kps.store.application.model.SchoolModel;
 import com.kps.store.application.service.SchoolService;
 
 @RestController
+@CrossOrigin
 @RequestMapping(value = { "/school", "/SCHOOL" })
 public class SchoolController {
 	@Autowired

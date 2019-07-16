@@ -93,7 +93,7 @@ public class VendorControllerTest {
 		Assert.assertNotNull(vendorModelList);
 		Assert.assertEquals(VENDOR_MODEL_LIST.size(), vendorModelList.size());
 	}
-	
+
 	@Test
 	public void testGetVendorById() {
 		VendorModel vendorModel = null;
@@ -107,7 +107,7 @@ public class VendorControllerTest {
 		}
 		Assert.assertNotNull(vendorModel);
 	}
-	
+
 	@Test
 	public void testGetVendorsByTerm() {
 		List<VendorModel> listVendorModel = null;

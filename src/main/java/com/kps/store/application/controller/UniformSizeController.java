@@ -3,6 +3,7 @@ package com.kps.store.application.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,6 +14,7 @@ import com.kps.store.application.model.UniformSizeModel;
 import com.kps.store.application.service.UniformSizeService;
 
 @RestController
+@CrossOrigin
 @RequestMapping(value = { "/uniformsize", "/UNIFORMSIZE" })
 public class UniformSizeController {
 	@Autowired

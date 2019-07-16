@@ -26,7 +26,7 @@ public class UniformSizeServiceImpl implements UniformSizeService {
 		try (Session session = sessionFactory.openSession()) {
 			Transaction tx = session.beginTransaction();
 			UniformSize uniformSize = ModelUtil.convertToUniformSizePojo(uniformSizeModel);
-			session.save(uniformSize);
+			session.saveOrUpdate(uniformSize);
 			tx.commit();
 			message = "UniformSize saved with id : " + uniformSize.getSizeId();
 		} catch (Exception e) {
