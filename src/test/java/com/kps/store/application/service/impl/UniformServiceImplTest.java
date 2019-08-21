@@ -20,7 +20,6 @@ import org.springframework.util.CollectionUtils;
 import com.kps.angularproject.application.config.TestDatabaseConfiguration;
 import com.kps.store.application.model.SchoolModel;
 import com.kps.store.application.model.UniformModel;
-import com.kps.store.application.model.UniformSizeModel;
 import com.kps.store.application.service.UniformService;
 import com.kps.store.database.hibernate.GENDER;
 
@@ -52,13 +51,8 @@ public class UniformServiceImplTest {
 		SchoolModel school = new SchoolModel();
 		school.setSchoolName("LPS");
 
-		UniformSizeModel uniformSize = new UniformSizeModel();
-		uniformSize.setGender(GENDER.BOY.name().toUpperCase());
-		uniformSize.setUniformNumber(30);
-
 		UniformModel uniformModel = new UniformModel();
 		uniformModel.setSchool(school);
-		uniformModel.setSize(uniformSize);
 		uniformModel.setUniformDetail("TestUniform detail");
 		String message = uniformService.save(uniformModel);
 
@@ -71,13 +65,8 @@ public class UniformServiceImplTest {
 		SchoolModel school = new SchoolModel();
 		school.setSchoolName("LPS");
 
-		UniformSizeModel uniformSize = new UniformSizeModel();
-		uniformSize.setGender(GENDER.BOY.name().toUpperCase());
-		uniformSize.setUniformNumber(30);
-
 		UniformModel uniformModel = new UniformModel();
 		uniformModel.setSchool(school);
-		uniformModel.setSize(uniformSize);
 		uniformModel.setUniformDetail("TestUniform detail");
 		uniformService.save(uniformModel);
 		List<UniformModel> uniformModelList = uniformService.list();
@@ -89,13 +78,8 @@ public class UniformServiceImplTest {
 		SchoolModel school = new SchoolModel();
 		school.setSchoolName("LPS");
 
-		UniformSizeModel uniformSize = new UniformSizeModel();
-		uniformSize.setGender(GENDER.BOY.name().toUpperCase());
-		uniformSize.setUniformNumber(30);
-
 		UniformModel uniformModel = new UniformModel();
 		uniformModel.setSchool(school);
-		uniformModel.setSize(uniformSize);
 		uniformModel.setUniformDetail("TestUniform detail");
 		ReflectionTestUtils.setField(uniformService, "sessionFactory", null);
 		String message = uniformService.save(uniformModel);

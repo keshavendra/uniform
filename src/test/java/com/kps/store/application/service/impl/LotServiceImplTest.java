@@ -26,7 +26,6 @@ import com.kps.store.application.model.LotItemModel;
 import com.kps.store.application.model.LotModel;
 import com.kps.store.application.model.SchoolModel;
 import com.kps.store.application.model.UniformModel;
-import com.kps.store.application.model.UniformSizeModel;
 import com.kps.store.application.model.VendorModel;
 import com.kps.store.application.service.LotService;
 
@@ -77,16 +76,11 @@ public class LotServiceImplTest {
 	}
 
 	private LotModel getLotModel() {
-		UniformSizeModel uniformSizeModel = new UniformSizeModel();
-		uniformSizeModel.setGender("BOY");
-		uniformSizeModel.setUniformNumber(23);
-
 		SchoolModel schoolModel = new SchoolModel();
 		schoolModel.setSchoolName("LPS");
 
 		UniformModel uniformModel = new UniformModel();
 		uniformModel.setSchool(schoolModel);
-		uniformModel.setSize(uniformSizeModel);
 		uniformModel.setUniformDetail("DummyDetails");
 
 		LotItemModel lotItemModel1 = new LotItemModel();
@@ -94,12 +88,16 @@ public class LotServiceImplTest {
 		lotItemModel1.setGst(12.0);
 		lotItemModel1.setQuantity(1);
 		lotItemModel1.setUniformName(uniformModel);
+		lotItemModel1.setGender("BOY");
+		lotItemModel1.setUniformNumber(23);
 
 		LotItemModel lotItemModel2 = new LotItemModel();
 		lotItemModel2.setCostPrice(19.9);
 		lotItemModel2.setGst(12.0);
 		lotItemModel2.setQuantity(4);
 		lotItemModel2.setUniformName(uniformModel);
+		lotItemModel2.setGender("BOY");
+		lotItemModel2.setUniformNumber(23);
 
 		List<LotItemModel> listLotItemModel = new ArrayList<LotItemModel>();
 		listLotItemModel.add(lotItemModel1);

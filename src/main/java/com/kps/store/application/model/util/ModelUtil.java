@@ -7,14 +7,12 @@ import com.kps.store.application.model.LotItemModel;
 import com.kps.store.application.model.LotModel;
 import com.kps.store.application.model.SchoolModel;
 import com.kps.store.application.model.UniformModel;
-import com.kps.store.application.model.UniformSizeModel;
 import com.kps.store.application.model.VendorModel;
 import com.kps.store.database.hibernate.GENDER;
 import com.kps.store.database.hibernate.Lot;
 import com.kps.store.database.hibernate.LotItem;
 import com.kps.store.database.hibernate.School;
 import com.kps.store.database.hibernate.Uniform;
-import com.kps.store.database.hibernate.UniformSize;
 import com.kps.store.database.hibernate.Vendor;
 
 public class ModelUtil {
@@ -62,7 +60,6 @@ public class ModelUtil {
 		Uniform uniform = new Uniform();
 		uniform.setUniformId(uniformModel.getUniformId());
 		uniform.setSchool(convertToSchoolPojo(uniformModel.getSchool()));
-		uniform.setSize(convertToUniformSizePojo(uniformModel.getSize()));
 		uniform.setUniformDetail(uniformModel.getUniformDetail());
 		uniform.setUniformId(uniformModel.getUniformId());
 		return uniform;
@@ -76,30 +73,8 @@ public class ModelUtil {
 		UniformModel model = new UniformModel();
 		model.setUniformId(uniform.getUniformId());
 		model.setSchool(convertSchoolToSchoolModel(uniform.getSchool()));
-		model.setSize(convertUniformSizeToUniformSizeModel(uniform.getSize()));
 		model.setUniformId(uniform.getUniformId());
 		return model;
-	}
-
-	public static UniformSize convertToUniformSizePojo(UniformSizeModel uniformSizeModel) {
-		UniformSize uniformSize = new UniformSize();
-		uniformSize.setSizeId(uniformSizeModel.getSizeId());
-		uniformSize.setGender(GENDER.valueOf(uniformSizeModel.getGender()));
-		uniformSize.setUniformNumber(uniformSizeModel.getUniformNumber());
-		return uniformSize;
-	}
-
-	public static List<UniformSizeModel> convertUniformSizeListToUniformSizeModelList(
-			List<UniformSize> uniformSizeList) {
-		return uniformSizeList.stream().map(x -> convertUniformSizeToUniformSizeModel(x)).collect(Collectors.toList());
-	}
-
-	private static UniformSizeModel convertUniformSizeToUniformSizeModel(UniformSize uniformSize) {
-		UniformSizeModel uniformSizeModel = new UniformSizeModel();
-		uniformSizeModel.setGender(uniformSize.getGender().name().toUpperCase());
-		uniformSizeModel.setSizeId(uniformSize.getSizeId());
-		uniformSizeModel.setUniformNumber(uniformSize.getUniformNumber());
-		return uniformSizeModel;
 	}
 
 	public static Lot convertToLotPojo(LotModel lotModel) {
@@ -125,6 +100,8 @@ public class ModelUtil {
 		lotItem.setLotItemId(lotItemModel.getLotItemId());
 		lotItem.setQuantity(lotItemModel.getQuantity());
 		lotItem.setUniformName(convertToUniformPojo(lotItemModel.getUniformName()));
+		lotItem.setGender(GENDER.valueOf(lotItemModel.getGender()));
+		lotItem.setUniformNumber(lotItemModel.getUniformNumber());
 		return lotItem;
 	}
 
@@ -156,6 +133,8 @@ public class ModelUtil {
 		lotItemModel.setLotItemId(lotItem.getLotItemId());
 		lotItemModel.setQuantity(lotItem.getQuantity());
 		lotItemModel.setUniformName(convertUniformToUniformModel(lotItem.getUniformName()));
+		lotItemModel.setGender(lotItem.getGender().name().toUpperCase());
+		lotItemModel.setUniformNumber(lotItem.getUniformNumber());
 		return lotItemModel;
 	}
 

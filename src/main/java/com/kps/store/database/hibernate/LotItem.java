@@ -19,6 +19,8 @@ public class LotItem {
 	private Double costPrice;
 	private Double gst;
 	private Integer quantity;
+	private GENDER gender;
+	private Integer uniformNumber;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "lot_item_id")
@@ -66,6 +68,24 @@ public class LotItem {
 
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
+	}
+	
+	@Column(name = "gender")
+	public GENDER getGender() {
+		return gender;
+	}
+
+	public void setGender(GENDER gender) {
+		this.gender = gender;
+	}
+
+	@Column(name = "uniform_number")
+	public Integer getUniformNumber() {
+		return uniformNumber;
+	}
+
+	public void setUniformNumber(Integer uniformNumber) {
+		this.uniformNumber = uniformNumber;
 	}
 
 }

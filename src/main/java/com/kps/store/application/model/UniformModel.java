@@ -11,7 +11,6 @@ public class UniformModel {
 	private Long uniformId;
 	private SchoolModel school;
 	private String uniformDetail;
-	private UniformSizeModel uniformSize;
 
 	public Long getUniformId() {
 		return this.uniformId;
@@ -35,13 +34,5 @@ public class UniformModel {
 
 	public void setUniformDetail(String uniformDetail) {
 		this.uniformDetail = uniformDetail;
-	}
-
-	public UniformSizeModel getSize() {
-		return uniformSize;
-	}
-
-	public void setSize(UniformSizeModel uniformSize) {
-		this.uniformSize = uniformSize;
 	}
 }

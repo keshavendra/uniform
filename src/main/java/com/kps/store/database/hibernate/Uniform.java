@@ -12,17 +12,11 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "uniform"/*
-						 * , uniqueConstraints = {
-						 * 
-						 * @UniqueConstraint(columnNames = { "school", "uniform_detail", "size" }, name
-						 * = "pk_uniforms") }
-						 */)
+@Table(name = "uniform")
 public class Uniform {
 	private Long uniformId;
 	private School school;
 	private String uniformDetail;
-	private UniformSize uniformSize;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "uniform_id")
@@ -53,14 +47,4 @@ public class Uniform {
 	public void setUniformDetail(String uniformDetail) {
 		this.uniformDetail = uniformDetail;
 	}
-
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	public UniformSize getSize() {
-		return uniformSize;
-	}
-
-	public void setSize(UniformSize uniformSize) {
-		this.uniformSize = uniformSize;
-	}
-
 }

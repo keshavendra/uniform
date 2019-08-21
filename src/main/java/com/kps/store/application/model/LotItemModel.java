@@ -13,6 +13,8 @@ public class LotItemModel {
 	private Double costPrice;
 	private Double gst;
 	private Integer quantity;
+	private String gender;
+	private Integer uniformNumber;
 
 	public Long getLotItemId() {
 		return this.lotItemId;
@@ -52,6 +54,22 @@ public class LotItemModel {
 
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
+	}
+	
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public Integer getUniformNumber() {
+		return uniformNumber;
+	}
+
+	public void setUniformNumber(Integer uniformNumber) {
+		this.uniformNumber = uniformNumber;
 	}
 
 }

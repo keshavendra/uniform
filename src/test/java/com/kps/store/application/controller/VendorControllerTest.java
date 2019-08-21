@@ -27,7 +27,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kps.angularproject.application.config.TestDatabaseConfiguration;
-import com.kps.store.application.model.UniformSizeModel;
 import com.kps.store.application.model.VendorModel;
 import com.kps.store.application.service.VendorService;
 
@@ -65,7 +64,7 @@ public class VendorControllerTest {
 
 	@Test
 	public void testSave() {
-		UniformSizeModel vendorModel = new UniformSizeModel();
+		VendorModel vendorModel = new VendorModel();
 		String message = null;
 		try {
 			MvcResult mvcResult = mockMvc.perform(
