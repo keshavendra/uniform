@@ -4,6 +4,7 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 
 import java.util.Arrays;
 import java.util.List;
@@ -56,6 +57,7 @@ public class SchoolControllerTest {
 		mapper = new ObjectMapper();
 		MockitoAnnotations.initMocks(this);
 		when(mockSchoolService.save(any(SchoolModel.class))).thenReturn("School saved with id : ");
+		when(mockSchoolService.update(any(SchoolModel.class))).thenReturn("School updated with id : "); 
 		when(mockSchoolService.list()).thenReturn(USER_MODEL_LIST);
 		mockMvc = MockMvcBuilders.standaloneSetup(this.schoolController).build();
 	}
@@ -89,5 +91,21 @@ public class SchoolControllerTest {
 		}
 		Assert.assertNotNull(schoolModelList);
 		Assert.assertEquals(USER_MODEL_LIST.size(), schoolModelList.size());
+	}
+	
+	@Test
+	public void testUpdate() {
+		SchoolModel schoolModel = new SchoolModel();
+		String message = null;
+		try {
+			MvcResult mvcResult = mockMvc.perform(
+					put("/school/update").contentType("application/json").content(mapper.writeValueAsBytes(schoolModel)))
+					.andReturn();
+			message = mvcResult.getResponse().getContentAsString();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		Assert.assertNotNull(message);
+		Assert.assertTrue(message.contains("School updated with id : "));
 	}
 }

@@ -72,4 +72,24 @@ public class SchoolServiceImplTest {
 		String message = schoolService.save(school);
 		Assert.assertTrue(message.contains("Exception occured while saving object"));
 	}
+	
+	@Test
+	public void testUpdate() {
+		SchoolModel school = new SchoolModel();
+		school.setSchoolName("LPS");
+		schoolService.save(school);
+		school = schoolService.list().get(0);
+		school.setSchoolName("CMS");
+		String message = schoolService.update(school);
+		Assert.assertNotNull(message);
+		Assert.assertTrue(message.contains("School updated with id : "));
+	}
+	
+	@Test
+	public void failUpdate() {
+		SchoolModel school = new SchoolModel();
+		school.setSchoolName("LPS");
+		String message = schoolService.update(school);
+		Assert.assertTrue(message.contains("Exception occured while saving object"));
+	}
 }

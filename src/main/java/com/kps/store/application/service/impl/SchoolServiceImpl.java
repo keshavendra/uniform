@@ -48,5 +48,21 @@ public class SchoolServiceImpl implements SchoolService {
 		}
 		return ModelUtil.convertSchoolListToSchoolModelList(schoolList);
 	}
+	
+	@Override
+	@Transactional
+	public String update(SchoolModel schoolModel) {
+		String message;
+		try (Session session = sessionFactory.openSession()) {
+			Transaction tx = session.beginTransaction();
+			School school = ModelUtil.convertToSchoolPojo(schoolModel);
+			session.update(school);
+			tx.commit();
+			message = "School updated with id : " + school.getSchoolId();
+		} catch (Exception e) {
+			message = "Exception occured while saving object " + e.getMessage();
+		}
+		return message;
+	}
 
 }
